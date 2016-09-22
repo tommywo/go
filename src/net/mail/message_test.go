@@ -525,15 +525,15 @@ func TestAddressString(t *testing.T) {
 	}{
 		{
 			&Address{Address: "bob@example.com"},
-			"<bob@example.com>",
+			"bob@example.com",
 		},
 		{ // quoted local parts: RFC 5322, 3.4.1. and 3.2.4.
 			&Address{Address: `my@idiot@address@example.com`},
-			`<"my@idiot@address"@example.com>`,
+			`"my@idiot@address"@example.com`,
 		},
 		{ // quoted local parts
 			&Address{Address: ` @example.com`},
-			`<" "@example.com>`,
+			`" "@example.com`,
 		},
 		{
 			&Address{Name: "Bob", Address: "bob@example.com"},
@@ -608,32 +608,32 @@ func TestAddressParsingAndFormatting(t *testing.T) {
 
 	// Should pass
 	tests := []string{
-		`<Bob@example.com>`,
-		`<bob.bob@example.com>`,
-		`<".bob"@example.com>`,
-		`<" "@example.com>`,
-		`<some.mail-with-dash@example.com>`,
-		`<"dot.and space"@example.com>`,
-		`<"very.unusual.@.unusual.com"@example.com>`,
-		`<admin@mailserver1>`,
-		`<postmaster@localhost>`,
-		"<#!$%&'*+-/=?^_`{}|~@example.org>",
-		`<"very.(),:;<>[]\".VERY.\"very@\\ \"very\".unusual"@strange.example.com>`, // escaped quotes
-		`<"()<>[]:,;@\\\"!#$%&'*+-/=?^_{}| ~.a"@example.org>`,                      // escaped backslashes
-		`<"Abc\\@def"@example.com>`,
-		`<"Joe\\Blow"@example.com>`,
-		`<test1/test2=test3@example.com>`,
-		`<def!xyz%abc@example.com>`,
-		`<_somename@example.com>`,
-		`<joe@uk>`,
-		`<~@example.com>`,
-		`<"..."@test.com>`,
-		`<"john..doe"@example.com>`,
-		`<"john.doe."@example.com>`,
-		`<".john.doe"@example.com>`,
-		`<"."@example.com>`,
-		`<".."@example.com>`,
-		`<"0:"@0>`,
+		`Bob@example.com`,
+		`bob.bob@example.com`,
+		`".bob"@example.com`,
+		`" "@example.com`,
+		`some.mail-with-dash@example.com`,
+		`"dot.and space"@example.com`,
+		`"very.unusual.@.unusual.com"@example.com`,
+		`admin@mailserver1`,
+		`postmaster@localhost`,
+		"#!$%&'*+-/=?^_`{}|~@example.org",
+		`"very.(),:;<>[]\".VERY.\"very@\\ \"very\".unusual"@strange.example.com`, // escaped quotes
+		`"()<>[]:,;@\\\"!#$%&'*+-/=?^_{}| ~.a"@example.org`,                      // escaped backslashes
+		`"Abc\\@def"@example.com`,
+		`"Joe\\Blow"@example.com`,
+		`test1/test2=test3@example.com`,
+		`def!xyz%abc@example.com`,
+		`_somename@example.com`,
+		`joe@uk`,
+		`~@example.com`,
+		`"..."@test.com`,
+		`"john..doe"@example.com`,
+		`"john.doe."@example.com`,
+		`".john.doe"@example.com`,
+		`"."@example.com`,
+		`".."@example.com`,
+		`"0:"@0`,
 	}
 
 	for _, test := range tests {
@@ -658,24 +658,24 @@ func TestAddressParsingAndFormatting(t *testing.T) {
 
 	// Should fail
 	badTests := []string{
-		`<Abc.example.com>`,
-		`<A@b@c@example.com>`,
-		`<a"b(c)d,e:f;g<h>i[j\k]l@example.com>`,
-		`<just"not"right@example.com>`,
-		`<this is"not\allowed@example.com>`,
-		`<this\ still\"not\\allowed@example.com>`,
-		`<john..doe@example.com>`,
-		`<john.doe@example..com>`,
-		`<john.doe@example..com>`,
-		`<john.doe.@example.com>`,
-		`<john.doe.@.example.com>`,
-		`<.john.doe@example.com>`,
-		`<@example.com>`,
-		`<.@example.com>`,
-		`<test@.>`,
-		`< @example.com>`,
-		`<""test""blah""@example.com>`,
-		`<""@0>`,
+		`Abc.example.com`,
+		`A@b@c@example.com`,
+		`a"b(c)d,e:f;g<h>i[j\k]l@example.com`,
+		`just"not"right@example.com`,
+		`this is"not\allowed@example.com`,
+		`this\ still\"not\\allowed@example.com`,
+		`john..doe@example.com`,
+		`john.doe@example..com`,
+		`john.doe@example..com`,
+		`john.doe.@example.com`,
+		`john.doe.@.example.com`,
+		`.john.doe@example.com`,
+		`@example.com`,
+		`.@example.com`,
+		`test@.`,
+		` @example.com`,
+		`""test""blah""@example.com`,
+		`""@0`,
 	}
 
 	for _, test := range badTests {

@@ -209,11 +209,13 @@ func (a *Address) String() string {
 
 	}
 
-	s := "<" + local + "@" + domain + ">"
+	s := local + "@" + domain
 
 	if a.Name == "" {
 		return s
 	}
+
+	 s = "<" + s + ">"
 
 	// If every character is printable ASCII, quoting is simple.
 	allPrintable := true
